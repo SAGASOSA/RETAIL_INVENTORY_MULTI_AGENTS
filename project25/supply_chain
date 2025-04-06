@@ -1,0 +1,18 @@
+import pandas as pd
+
+# Load the individual data files
+df_demand = pd.read_csv("demand_forecasting.csv")
+df_inventory = pd.read_csv("inventory_monitoring.csv")
+df_pricing = pd.read_csv("pricing_optimization.csv")
+
+# Merge the dataframes based on 'Product ID' and 'Store ID'
+merged_df = pd.merge(df_demand, df_inventory, on=['Product ID', 'Store ID'], how='outer')
+merged_df = pd.merge(merged_df, df_pricing, on=['Product ID', 'Store ID'], how='outer')
+
+# Fill missing values if needed
+merged_df.fillna("N/A", inplace=True)
+
+# Save to CSV
+merged_df.to_csv("supply_chain_data.csv", index=False)
+
+print("Merged file created successfully as supply_chain_data.csv")
