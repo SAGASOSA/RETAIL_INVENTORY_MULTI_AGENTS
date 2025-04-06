@@ -1,0 +1,1 @@
+python multiagent_inventory_cli.py --product_id 7648 --store_id 77
